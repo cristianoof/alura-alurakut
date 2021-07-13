@@ -1,48 +1,70 @@
-import styled from 'styled-components'
+//import styled from 'styled-components'
+import MainGrid from '../src/components/MainGrid'
+import Box from '../src/components/Box'
+import { AlurakutMenu, OrkutNostalgicIconSet } from '../src/lib/AlurakutCommons'
+import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations'
 
-const Box = styled.div`
-  background: #FFFFFF;
-  border-radius: 8px;
-  margin-top: 10px;
-`
-
-const MainGrid = styled.main`
-  display: grid;
-  grid-gap: 10px;
-  padding: 16px;
-
-  @media(min-width: 860px) {
-    grid-template-areas: "profileArea welcomeArea profileRelationsArea";
-    grid-template-columns: 160px 1fr 312px;
-  }
-`
+function ProfileSideBar(props) {
+  return (
+    <Box>
+      <img src={`https://github.com/${props.gitHubUser}.png`}/>
+    </Box>
+  )
+}
 
 export default function Home() {
+  const gitHubUser = 'cristianoof'
+
+  const pessoasFavoritas = [
+    'juunegreiros',
+    'omariosouto',
+    'peas',
+    'rafaballerini',
+    'marcobrunodev',
+    'felipefialho',
+    //'cpelegrin' esse não incorporou no layout, verificar
+  ]
+
   return (
-    <MainGrid>
-      <div className="profileArea">
-        <Box>
-          <img src="https://github.com/cristianoof.png"/>
-        </Box>
-      </div>
+    <>
+      <AlurakutMenu />
+      <MainGrid>
+        <div className="profileArea">
+          <ProfileSideBar gitHubUser={gitHubUser}/>
+        </div>
 
-      <div className="welcomeArea">
-        <Box>
-          Bem vindo
-        </Box>
-        <Box>
-          O que deseja fazer?
-        </Box>
-      </div>
+        <div className="welcomeArea">
+          <Box>
+            <h1 className="title">Bem vindo(a)</h1>
 
-      <div className="profileRelationsArea">
-        <Box>
-          Meus Amigos
-        </Box>
-        <Box>
-          Minhas Comunidades
-        </Box>
-      </div>
-    </MainGrid>
+            <OrkutNostalgicIconSet />
+          </Box>
+          <Box>
+            O que deseja fazer?
+          </Box>
+        </div>
+
+        <div className="profileRelationsArea">
+          <ProfileRelationsBoxWrapper>
+            <h2 className="smallTitle">Meus Amigos ({pessoasFavoritas.length})</h2>
+            <ul>
+              {pessoasFavoritas.map((amigos) => {
+                return (
+                  <li>
+                    <a href={`/users/${amigos}`} key={amigos}>
+                      <img src={`https://github.com/${amigos}.png`} />
+                      <span>{amigos}</span>
+                    </a>
+                  </li>
+                )
+              })}
+            </ul>
+          </ProfileRelationsBoxWrapper>
+          <Box>
+            Minhas Comunidades
+          </Box>
+        </div>
+      </MainGrid>
+    </>
   )
 }
