@@ -56,5 +56,10 @@ const Box = styled.div`
     border-radius: 10000px;
     background-color: #6F92BB;
   }
+  spam{
+    color: #999999;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+  }
 `
 export default Box
