@@ -27,29 +27,29 @@ export default function LoginScreen() {
                      },
                      body: JSON.stringify({ githubUser: githubUser })
                   })
-                     .then(async (response) => {
-                        const dadosDaResponsta = await response.json()
-                        const token = dadosDaResponsta.token
+                  .then(async (response) => {
+                     const dadosResposta = await response.json()
+                     const token = dadosResposta.token
 
-                        const { isAuthenticated } = await fetch("https://alurakut-cristiano.vercel.app/api/auth", {
-                           headers: {
-                              Authorization: token,
-                           },
-                        })
-                        .then((resposta) => resposta.text())
-
-                        if(isAuthenticated){
-                           nookies.set(null, 'USER_TOKEN', token, {
-                              path: '/',
-                              maxAge: 3600
-                           })
-                           router.push('/')
-                        } else {
-                           alert("Usuário não Existe ou não Encontrado!")
-                        }
-                        console.log(isAuthenticated)
-                        
+                     const { isAuthenticated } = await fetch("https://alurakut-cristiano.vercel.app/api/auth", {
+                        headers: {
+                           Authorization: token,
+                        },
                      })
+                     .then((resposta) => resposta.json())
+
+                     if(isAuthenticated){
+                        nookies.set(null, 'USER_TOKEN', token, {
+                           path: '/',
+                           maxAge: 3600
+                        })
+                        router.push('/')
+                     } else {
+                        alert("Usuário não Existe ou não Encontrado!")
+                     }
+                     console.log(isAuthenticated)
+                     
+                  })
                }}>
                   <p>
                      Acesse agora mesmo com seu usuário do <strong>GitHub</strong>!
