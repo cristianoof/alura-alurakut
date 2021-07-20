@@ -28,7 +28,7 @@ export default function LoginScreen() {
                      body: JSON.stringify({ githubUser: githubUser })
                   })
                      .then(async (response) => {
-                        const dadosDaResponsta = await response.text()
+                        const dadosDaResponsta = await response.json()
                         const token = dadosDaResponsta.token
 
                         const { isAuthenticated } = await fetch("https://alurakut-cristiano.vercel.app/api/auth", {
