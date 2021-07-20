@@ -43,6 +43,7 @@ export default function LoginScreen() {
                            path: '/',
                            maxAge: 3600
                         })
+                        alert("está autenticado")
                         router.push('/')
                      } else {
                         alert("Usuário não Existe ou não Encontrado!")
