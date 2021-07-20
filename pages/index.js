@@ -260,7 +260,7 @@ export async function getServerSideProps(context) {
     },
   })
   //.then((resposta) => resposta.json())
-  .then((resposta) => JSON.parse(resposta))
+  .then((resposta) => resposta.text())
 
   if(!isAuthenticated) {
     return {
