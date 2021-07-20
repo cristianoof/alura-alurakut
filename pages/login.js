@@ -31,7 +31,7 @@ export default function LoginScreen() {
                         const dadosDaResponsta = await response.json()
                         const token = dadosDaResponsta.token
 
-                        const { isAuthenticated } = await fetch("http://localhost:3000/api/auth", {
+                        const { isAuthenticated } = await fetch("https://alurakut.cristiano.vercel.app/api/auth", {
                            headers: {
                               Authorization: token,
                            },
