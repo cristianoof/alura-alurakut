@@ -28,7 +28,7 @@ export default function LoginScreen() {
                      body: JSON.stringify({ githubUser: githubUser })
                   })
                      .then(async (response) => {
-                        const dadosDaResponsta = await response.json()
+                        const dadosDaResponsta = await response.text()
                         const token = dadosDaResponsta.token
 
                         const { isAuthenticated } = await fetch("https://alurakut-cristiano.vercel.app/api/auth", {
@@ -36,7 +36,7 @@ export default function LoginScreen() {
                               Authorization: token,
                            },
                         })
-                        .then((resposta) => resposta.json())
+                        .then((resposta) => resposta.text())
 
                         if(isAuthenticated){
                            nookies.set(null, 'USER_TOKEN', token, {
