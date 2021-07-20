@@ -259,7 +259,8 @@ export async function getServerSideProps(context) {
       Authorization: token,
     },
   })
-  .then((resposta) => resposta.json())
+  //.then((resposta) => resposta.json())
+  .then((resposta) => JSON.parse(resposta))
 
   if(!isAuthenticated) {
     return {
