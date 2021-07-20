@@ -44,7 +44,7 @@ export default function LoginScreen() {
                            maxAge: 3600
                         })
                         alert("está autenticado")
-                        router.push('/')
+                        router.replace('/')
                      } else {
                         alert("Usuário não Existe ou não Encontrado!")
                      }
